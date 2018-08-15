@@ -1,0 +1,5 @@
+Tasks
+
+☐ Add millisecond conversion functions
+☐ Add function to resolveCacheAndFetch
+☐ Add some form of a cachable item class (naming?)
