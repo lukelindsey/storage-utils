@@ -1,5 +1,8 @@
 Tasks
 
+☐ Make rollup use TS version 2.9
 ☐ Add millisecond conversion functions
 ☐ Add function to resolveCacheAndFetch
 ☐ Add some form of a cachable item class (naming?)
+☐ Update the README
+☐ Travis setup
