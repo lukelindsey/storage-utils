@@ -1,6 +1,6 @@
 {
   "name": "storage-utils",
-  "version": "0.0.1-rc.1",
+  "version": "0.0.3-rc.0",
   "description": "Set of utils on top of the Storage (localStorage, sessionStorage) interface",
   "keywords": [
     "caching",
