@@ -12,50 +12,50 @@ export function getOrAdd<T>(
   ttl?: number,
   useExpired?: boolean
 ): Promise<T> {
-  const cached = getFromStorage<T>(storage, key)
+  const cached = getFromStorage<T>(storage, key);
   // if not expired, we can leave
-  if (cached && !cached.hasExpired) return Promise.resolve(cached.data)
+  if (cached && !cached.hasExpired) return Promise.resolve(cached.data);
 
   // if expired or missing, start the fetch
-  const expired = cached ? cached.data : undefined
+  const expired = cached ? cached.data : undefined;
   const fetch = getData(expired).then(data => {
-    updateStorage(storage, key, data, ttl)
-    return data
-  })
+    updateStorage(storage, key, data, ttl);
+    return data;
+  });
 
   // already working on the update, leave and return the stale data if requested
-  if (cached && useExpired) return Promise.resolve(cached.data)
-  return fetch
+  if (cached && useExpired) return Promise.resolve(cached.data);
+  return fetch;
 }
 
 function getFromStorage<T>(storage: Storage, storageKey: string): IFromCache<T> | null {
-  const cached = storage.getItem(storageKey)
+  const cached = storage.getItem(storageKey);
   if (cached) {
-    const parsed: ICached = JSON.parse(cached)
+    const parsed: ICached = JSON.parse(cached);
     return {
       hasExpired: !hasTimeToLive(parsed.expiration),
       data: parsed.data
-    }
+    };
   }
-  return null
+  return null;
 }
 
 function updateStorage(storage: Storage, storageKey: string, data: any, ttl?: number): void {
   const cacheObject: ICached = {
     data,
     expiration: ttl ? getNowMilliseconds() + ttl : undefined
-  }
-  storage.setItem(storageKey, JSON.stringify(cacheObject))
+  };
+  storage.setItem(storageKey, JSON.stringify(cacheObject));
 }
 
 function hasTimeToLive(expiration?: number): boolean {
   if (expiration) {
-    const now = getNowMilliseconds()
-    return expiration > now
+    const now = getNowMilliseconds();
+    return expiration > now;
   }
-  return true
+  return true;
 }
 
 function getNowMilliseconds(): number {
-  return new Date().getTime()
+  return new Date().getTime();
 }
