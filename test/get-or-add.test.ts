@@ -1,5 +1,5 @@
 import "core-js/es6/promise";
-import { getOrAdd } from "../src/storage-utils";
+import { getOrAdd } from "../src/getOrAdd";
 
 const cacheKey = "some-key";
 const fromCacheExpected = [1, 2, 3];

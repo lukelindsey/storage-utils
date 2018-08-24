@@ -3,7 +3,7 @@ import {
   convertHoursToMilliseconds,
   convertMinutesToMilliseconds,
   convertSecondsToMilliseconds
-} from "../src/millisecond-conversions";
+} from "../src/millisecondConversions";
 
 describe("MillisecondConversions --", () => {
   describe("the convertDaysToMilliseconds function", () => {
