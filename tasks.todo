@@ -7,3 +7,4 @@ Tasks
   ☐ Add cache item tests
 ☐ Update the README
 ☐ Travis setup
+☐ typedoc should be only showing what is exported

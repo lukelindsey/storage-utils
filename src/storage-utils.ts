@@ -1,3 +1,3 @@
-export * from './millisecond-conversions'
+export * from "./millisecondConversions";
 
-export * from './get-or-add'
+export * from "./getOrAdd";
