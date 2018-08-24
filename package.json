@@ -38,8 +38,8 @@
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "size": "uglifyjs dist/storage-utils.umd.js --compress --mangle -o dist/storage-utils.umd.min.js && strip-json-comments --no-whitespace dist/storage-utils.umd.min.js | gzip-size && bundlesize",
     "precommit": "lint-staged",
-    "prepush": "npm run test:prod && npm run build && size",
-    "prepublish": "npm run test:prod && npm run build && size",
+    "prepush": "npm run test:prod && npm run build",
+    "prepublish": "npm run test:prod && npm run build",
     "commitmsg": "validate-commit-msg"
   },
   "lint-staged": {
@@ -84,12 +84,10 @@
     ],
     "collectCoverage": true
   },
-  "bundlesize": [
-    {
-      "path": "dist/storage-utils.umd.min.js",
-      "maxSize": "1kb"
-    }
-  ],
+  "bundlesize": [{
+    "path": "dist/storage-utils.umd.min.js",
+    "maxSize": "1kb"
+  }],
   "prettier": {
     "printWidth": 100
   },
