@@ -13,10 +13,11 @@ interface IFetchDataParams<M, N = {}> {
   params?: N;
 }
 
-interface ICachableItem<T, R = {}> {
+interface ICacheItem<T, R = {}> {
   cacheKey: string;
   fetchData: (p: IFetchDataParams<T, R>) => Promise<T>;
   ttl: number;
   storage: Storage;
-  useExpired: boolean; // if the data has expired, use it this time, while updating in the background.
+  useExpired?: boolean; // if the data has expired, use it this time, while updating in the background.
+  delayedParams?: boolean;
 }
