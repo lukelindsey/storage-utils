@@ -10,8 +10,8 @@ Code
   ✔ Add millisecond conversion functions @done (8/23/2018, 9:46:31 PM)
 
 Other
-☐ update packages
-☐ Make rollup use TS version 2.9
+✔ update packages @done (11/22/2018, 7:20:59 PM)
+✔ Make rollup use TS version 2.9 @done (11/22/2018, 7:21:02 PM)
 ☐ Update the README
 ✔ Travis setup @done (8/23/2018, 9:46:47 PM)
 ☐ typedoc should be only showing what is exported
