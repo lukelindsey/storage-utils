@@ -28,11 +28,9 @@ export function useResolve<T>(
 
   // if expired or missing, start the fetch
   const expired = cached ? cached.data : undefined;
-  return new Promise(finished => {
-    getData(expired).then(data => {
-      updateStorage(storage, key, data, ttl);
-      resolve(data);
-      finished(); // should we require using a promise with finally?
-    });
+  return getData(expired).then(data => {
+    updateStorage(storage, key, data, ttl);
+    resolve(data);
+    return;
   });
 }
