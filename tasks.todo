@@ -1,10 +1,17 @@
 Tasks
 
-☐ Make rollup use TS version 2.9
-☐ Add millisecond conversion functions
-☐ Add function to resolveCacheAndFetch
+Code
 ☐ Add some form of a cache item class (naming?)
   ☐ Add cache item tests
+    ✔ stub out @done (8/25/2018, 11:40:28 PM)
+    ☐ implement the tests
+    ☐ analyze the coverage, add anything missed
+☐ Add function to useResolve
+  ✔ Add millisecond conversion functions @done (8/23/2018, 9:46:31 PM)
+
+Other
+☐ update packages
+☐ Make rollup use TS version 2.9
 ☐ Update the README
-☐ Travis setup
+✔ Travis setup @done (8/23/2018, 9:46:47 PM)
 ☐ typedoc should be only showing what is exported

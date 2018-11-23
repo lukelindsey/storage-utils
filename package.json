@@ -84,13 +84,12 @@
     ],
     "collectCoverage": true
   },
-  "bundlesize": [{
-    "path": "dist/storage-utils.umd.min.js",
-    "maxSize": "1kb"
-  }],
-  "prettier": {
-    "printWidth": 100
-  },
+  "bundlesize": [
+    {
+      "path": "dist/storage-utils.umd.min.js",
+      "maxSize": "1kb"
+    }
+  ],
   "devDependencies": {
     "@types/jest": "^22.0.0",
     "@types/node": "^10.0.3",
@@ -107,7 +106,7 @@
     "jest-localstorage-mock": "^2.2.0",
     "lint-staged": "^7.1.3",
     "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.13.4",
+    "prettier": "1.15.2",
     "prompt": "^1.0.0",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
