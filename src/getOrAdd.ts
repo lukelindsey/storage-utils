@@ -1,3 +1,5 @@
+import { getFromStorage, updateStorage } from "./internalHelpers";
+
 /**
  * @param {Storage} storage storage to use. i.e. localStorage, sessionStorage
  * @param {string} key
@@ -26,36 +28,4 @@ export function getOrAdd<T>(
   // already working on the update, leave and return the stale data if requested
   if (cached && useExpired) return Promise.resolve(cached.data);
   return fetch;
-}
-
-function getFromStorage<T>(storage: Storage, storageKey: string): IFromCache<T> | null {
-  const cached = storage.getItem(storageKey);
-  if (cached) {
-    const parsed: ICached = JSON.parse(cached);
-    return {
-      hasExpired: !hasTimeToLive(parsed.expiration),
-      data: parsed.data
-    };
-  }
-  return null;
-}
-
-function updateStorage(storage: Storage, storageKey: string, data: any, ttl?: number): void {
-  const cacheObject: ICached = {
-    data,
-    expiration: ttl ? getNowMilliseconds() + ttl : undefined
-  };
-  storage.setItem(storageKey, JSON.stringify(cacheObject));
-}
-
-function hasTimeToLive(expiration?: number): boolean {
-  if (expiration) {
-    const now = getNowMilliseconds();
-    return expiration > now;
-  }
-  return true;
-}
-
-function getNowMilliseconds(): number {
-  return new Date().getTime();
 }
