@@ -115,7 +115,7 @@
     "tslint-config-prettier": "1.16.0",
     "tslint-config-standard": "8.0.1",
     "typedoc": "0.13.0",
-    "typescript": "3.1.6",
+    "typescript": "3.2.1",
     "uglify-js": "3.4.9",
     "validate-commit-msg": "2.14.0"
   },
