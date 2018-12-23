@@ -17,7 +17,7 @@
   "author": "Luke Lindsey <luke.lindsey.dev@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LukeLindsey/storage-utils"
+    "url": "https://github.com/lukelindsey/storage-utils"
   },
   "license": "MIT",
   "engines": {
@@ -37,7 +37,10 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "size": "uglifyjs dist/storage-utils.umd.js --compress --mangle -o dist/storage-utils.umd.min.js && strip-json-comments --no-whitespace dist/storage-utils.umd.min.js | gzip-size && bundlesize",
-    "prepublish": "npm run test:prod && npm run build"
+    "prepublish": "npm run test:prod && npm run build",
+    "prepush": "npm run test:prod && npm run build",
+    "commitmsg": "validate-commit-msg",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -117,7 +120,8 @@
     "typedoc": "0.13.0",
     "typescript": "3.2.2",
     "uglify-js": "3.4.9",
-    "validate-commit-msg": "2.14.0"
+    "validate-commit-msg": "2.14.0",
+    "travis-deploy-once": "5.0.11"
   },
   "husky": {
     "hooks": {
