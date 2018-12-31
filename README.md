@@ -13,7 +13,13 @@ A set of functions that makes caching using the [Storage](https://developer.mozi
 - Stale data is passed back to the getData callback so that only 'new' data needs to be fetched over the network
 - `useResolve` allows using a function that will optionally resolve twice. Once with the cached data, and then with the fetched data (if the cache has expired). This provides the best of both worlds (instantaneous render and showing fresh data from API after fetch completes), and is an excellent fit for React's `setState` or a function that mutates the correct piece of data in Vue.
 
-### Example
+### API
+
+[link](https://lukelindsey.github.io/storage-utils/)
+
+### Examples
+
+#### Barebones
 ```js
 // cache is never invalidated since we omitted a time to live but can be manually removed
 getOrAdd(localStorage, "someUniqueKey", fetchItems).then((items) => {
@@ -21,11 +27,3 @@ getOrAdd(localStorage, "someUniqueKey", fetchItems).then((items) => {
   console.log(items)
 })
 ```
-
-### API
-
-`getOrAdd`
-
-`useResolve`
-
-`convert[Days|Hours|Minutes|Seconds]ToMilliseconds`
