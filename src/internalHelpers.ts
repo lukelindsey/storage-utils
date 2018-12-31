@@ -1,3 +1,4 @@
+/** @hidden */
 export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCache<T> | null {
   const cached = storage.getItem(storageKey);
   if (cached) {
@@ -10,6 +11,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
   return null;
 }
 
+/** @hidden */
 export function updateStorage(storage: Storage, storageKey: string, data: any, ttl?: number): void {
   const cacheObject: ICached = {
     data,
@@ -18,6 +20,7 @@ export function updateStorage(storage: Storage, storageKey: string, data: any, t
   storage.setItem(storageKey, JSON.stringify(cacheObject));
 }
 
+/** @hidden */
 function hasTimeToLive(expiration?: number): boolean {
   if (expiration) {
     const now = getNowMilliseconds();
@@ -26,6 +29,7 @@ function hasTimeToLive(expiration?: number): boolean {
   return true;
 }
 
+/** @hidden */
 function getNowMilliseconds(): number {
   return new Date().getTime();
 }
