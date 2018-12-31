@@ -15,9 +15,9 @@ Features:
 Example:
 ```js
 // cache is never invalidated since we omitted a time to live but can be manually removed
-getOrAdd(localStorage, "someUniqueKey", () => fetch("/api/items")).then((data) => {
+getOrAdd(localStorage, "someUniqueKey", fetchItems).then((items) => {
   // data here is either coming from the cache or the fetch we provided
-  console.log(data)
+  console.log(items)
 })
 ```
 
