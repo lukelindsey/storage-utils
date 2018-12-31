@@ -20,6 +20,7 @@ A set of functions that makes caching using the [Storage](https://developer.mozi
 ### Examples
 
 #### Barebones
+
 ```js
 // cache is never invalidated since we omitted a time to live but can be manually removed
 getOrAdd(localStorage, "someUniqueKey", fetchItems).then((items) => {
