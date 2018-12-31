@@ -23,7 +23,7 @@ export function useResolve<T>(
   if (cached) {
     resolve(cached.data);
     // if not expired, we are done
-    if (!cached.hasExpired) return Promise.resolve();
+    if (cached.hasTtl) return Promise.resolve();
   }
 
   // if expired or missing, start the fetch

@@ -16,7 +16,7 @@ export function getOrAdd<T>(
 ): Promise<T> {
   const cached = getFromStorage<T>(storage, key);
   // if not expired, we can leave
-  if (cached && !cached.hasExpired) return Promise.resolve(cached.data);
+  if (cached && cached.hasTtl) return Promise.resolve(cached.data);
 
   // if expired or missing, start the fetch
   const expired = cached ? cached.data : undefined;

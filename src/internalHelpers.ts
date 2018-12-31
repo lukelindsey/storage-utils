@@ -4,7 +4,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
   if (cached) {
     const parsed: ICached = JSON.parse(cached);
     return {
-      hasExpired: !hasTimeToLive(parsed.expiration),
+      hasTtl: hasTimeToLive(parsed.expiration),
       data: parsed.data
     };
   }
@@ -32,4 +32,16 @@ function hasTimeToLive(expiration?: number): boolean {
 /** @hidden */
 function getNowMilliseconds(): number {
   return new Date().getTime();
+}
+
+/** @hidden */
+interface IFromCache<T> {
+  data: T;
+  hasTtl: boolean;
+}
+
+/** @hidden */
+interface ICached {
+  data: any;
+  expiration?: number;
 }
