@@ -91,7 +91,7 @@
     }
   ],
   "devDependencies": {
-    "@types/jest": "23.3.12",
+    "@types/jest": "23.3.13",
     "@types/node": "10.12.18",
     "bundlesize": "0.17.1",
     "commitizen": "3.0.5",
