@@ -1,4 +1,4 @@
-import "core-js/es6/promise";
+import "core-js/features/promise";
 import { getOrAdd } from "../src/storage-utils";
 import { cacheKey, fromCacheExpected, getLastSet, mockCached } from "./testUtils";
 
