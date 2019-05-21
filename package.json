@@ -119,7 +119,7 @@
     "tslint-config-standard": "8.0.1",
     "typedoc": "0.14.2",
     "typescript": "3.4.5",
-    "uglify-js": "3.5.12",
+    "uglify-js": "3.5.14",
     "validate-commit-msg": "2.14.0",
     "travis-deploy-once": "5.0.11"
   },
