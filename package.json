@@ -84,32 +84,30 @@
     ],
     "collectCoverage": true
   },
-  "bundlesize": [
-    {
-      "path": "dist/storage-utils.umd.min.js",
-      "maxSize": "1kb"
-    }
-  ],
+  "bundlesize": [{
+    "path": "dist/storage-utils.umd.min.js",
+    "maxSize": "1kb"
+  }],
   "devDependencies": {
-    "@types/jest": "24.0.11",
-    "@types/node": "11.13.5",
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.2",
     "bundlesize": "0.17.2",
-    "commitizen": "3.1.0",
+    "commitizen": "3.1.1",
     "core-js": "3.0.1",
     "coveralls": "3.0.3",
     "cz-conventional-changelog": "2.1.0",
-    "husky": "1.3.1",
-    "jest": "24.7.1",
+    "husky": "2.3.0",
+    "jest": "24.8.0",
     "jest-localstorage-mock": "2.4.0",
-    "lint-staged": "8.1.5",
+    "lint-staged": "8.1.7",
     "prettier": "1.17.0",
     "rimraf": "2.6.3",
-    "rollup": "1.10.1",
+    "rollup": "1.12.1",
     "rollup-plugin-commonjs": "9.3.4",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-resolve": "4.2.3",
     "rollup-plugin-sourcemaps": "0.4.2",
-    "rollup-plugin-typescript2": "0.20.1",
+    "rollup-plugin-typescript2": "0.21.0",
     "rollup-plugin-uglify": "6.0.2",
     "semantic-release": "15.13.3",
     "ts-jest": "24.0.2",
@@ -118,8 +116,8 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "8.0.1",
     "typedoc": "0.14.2",
-    "typescript": "3.4.4",
-    "uglify-js": "3.5.4",
+    "typescript": "3.4.5",
+    "uglify-js": "3.5.12",
     "validate-commit-msg": "2.14.0",
     "travis-deploy-once": "5.0.11"
   },
