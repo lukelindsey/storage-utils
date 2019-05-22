@@ -84,16 +84,14 @@
     ],
     "collectCoverage": true
   },
-  "bundlesize": [
-    {
-      "path": "dist/storage-utils.umd.min.js",
-      "maxSize": "1kb"
-    }
-  ],
+  "bundlesize": [{
+    "path": "dist/storage-utils.umd.min.js",
+    "maxSize": "1kb"
+  }],
   "devDependencies": {
     "@types/jest": "24.0.13",
     "@types/node": "12.0.2",
-    "bundlesize": "0.17.1",
+    "bundlesize": "0.17.2",
     "commitizen": "3.1.1",
     "core-js": "3.0.1",
     "coveralls": "3.0.3",
