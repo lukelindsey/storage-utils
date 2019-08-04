@@ -89,7 +89,7 @@
     "maxSize": "1kb"
   }],
   "devDependencies": {
-    "@types/jest": "24.0.15",
+    "@types/jest": "24.0.16",
     "@types/node": "12.6.8",
     "bundlesize": "0.18.0",
     "commitizen": "4.0.3",
