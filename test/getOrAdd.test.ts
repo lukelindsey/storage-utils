@@ -130,4 +130,28 @@ describe("getOrAdd function", () => {
       });
     });
   });
+  it("should cache for 0 milliseconds if 0 provided", done => {
+    getOrAdd(localStorage, cacheKey, doFetch, 0, false).then(result => {
+      expect(result).toEqual(fromFetchExpected);
+      expect(localStorage.getItem).toHaveBeenCalledTimes(1);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+      const set = getLastSet();
+      expect(set.key).toEqual(cacheKey);
+      expect(set.data).toEqual(fromFetchExpected);
+      // expiration set to within a tenth of a second of what we expect
+      expect(new Date().getTime() / 2000 - set.expiration / 2000).toBeCloseTo(0, 0);
+      expect(fetchCalls).toEqual(1);
+
+      // get again and make sure we fetch
+      getOrAdd(localStorage, cacheKey, doAnotherFetch, 0, false).then(result => {
+        expect(result).toEqual(notExpected); // bad name for this case
+        expect(localStorage.getItem).toHaveBeenCalledTimes(2);
+        expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
+        expect(localStorage.setItem).toHaveBeenCalledTimes(2);
+        expect(fetchCalls).toEqual(2);
+        done();
+      });
+    });
+  });
 });
