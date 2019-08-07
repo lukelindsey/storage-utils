@@ -15,7 +15,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
 export function updateStorage(storage: Storage, storageKey: string, data: any, ttl?: number): void {
   const cacheObject: ICached = {
     data,
-    expiration: ttl ? getNowMilliseconds() + ttl : undefined
+    expiration: ttl === undefined ? undefined : getNowMilliseconds() + ttl
   };
   storage.setItem(storageKey, JSON.stringify(cacheObject));
 }
