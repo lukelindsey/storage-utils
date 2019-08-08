@@ -2,7 +2,7 @@ import { getFromStorage, updateStorage } from "./internalHelpers";
 
 /**
  * @param {Storage} storage storage to use. i.e. localStorage, sessionStorage
- * @param {string} key
+ * @param {string} key unique string used as cache key to storage
  * @param {() => Promise<T>} getData returns a promise used to fetch the data
  * @param {number} ttl Max time to live in milliseconds
  * @param {(T) => void} resolve function called with the value from the cache
