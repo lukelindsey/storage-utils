@@ -2,7 +2,7 @@ import { getFromStorage, updateStorage } from "./internalHelpers";
 
 /**
  * @param {Storage} storage storage to use. i.e. localStorage, sessionStorage
- * @param {string} key
+ * @param {string} key unique string used as cache key to storage
  * @param {() => Promise<T>} getData returns a promise used to fetch the data from if it's not in cache
  * @param {number?} ttl Max time to live in milliseconds
  * @param {boolean?} useExpired If true, will return expired items from cache while updating in the background.
