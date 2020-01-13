@@ -95,7 +95,7 @@
     "@types/node": "13.1.4",
     "bundlesize": "0.18.0",
     "commitizen": "4.0.3",
-    "core-js": "3.6.2",
+    "core-js": "3.6.3",
     "coveralls": "3.0.9",
     "cz-conventional-changelog": "3.0.2",
     "husky": "4.0.3",
