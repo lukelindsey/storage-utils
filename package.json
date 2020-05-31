@@ -93,6 +93,7 @@
   "devDependencies": {
     "@types/jest": "25.2.3",
     "@types/node": "13.9.4",
+    "@types/react": "^16.9.35",
     "bundlesize": "0.18.0",
     "commitizen": "4.0.3",
     "core-js": "3.6.4",
@@ -103,6 +104,7 @@
     "jest-localstorage-mock": "2.4.0",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",
+    "react": "16.13.1",
     "rimraf": "3.0.2",
     "rollup": "1.32.1",
     "rollup-plugin-commonjs": "10.1.0",
@@ -112,6 +114,7 @@
     "rollup-plugin-typescript2": "0.27.1",
     "rollup-plugin-uglify": "6.0.4",
     "semantic-release": "15.14.0",
+    "travis-deploy-once": "5.0.11",
     "ts-jest": "25.2.1",
     "ts-node": "8.10.2",
     "tslint": "5.20.1",
@@ -120,8 +123,10 @@
     "typedoc": "0.16.11",
     "typescript": "3.8.3",
     "uglify-js": "3.8.0",
-    "validate-commit-msg": "2.14.0",
-    "travis-deploy-once": "5.0.11"
+    "validate-commit-msg": "2.14.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.x.x"
   },
   "husky": {
     "hooks": {
