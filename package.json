@@ -92,7 +92,7 @@
   ],
   "devDependencies": {
     "@types/jest": "25.2.3",
-    "@types/node": "13.9.4",
+    "@types/node": "14.0.10",
     "bundlesize": "0.18.0",
     "commitizen": "4.0.3",
     "core-js": "3.6.4",
