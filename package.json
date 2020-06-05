@@ -118,7 +118,7 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "9.0.0",
     "typedoc": "0.16.11",
-    "typescript": "3.8.3",
+    "typescript": "3.9.5",
     "uglify-js": "3.8.0",
     "validate-commit-msg": "2.14.0",
     "travis-deploy-once": "5.0.11"
