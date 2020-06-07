@@ -30,6 +30,7 @@ export function useCache<T>(
 
   useEffect(() => {
     if (fromCache === undefined || !fromCache.hasTtl) {
+      // tslint:disable-next-line:no-floating-promises
       getData(fromCache?.data).then(data => {
         updateStorage(storage, key, data, ttl);
         setData(data);
