@@ -31,7 +31,7 @@ describe("useCache hook", () => {
     (localStorage.getItem as any).mockClear();
   });
 
-  it("should read from cache and immediately write to dom if cached", done => {
+  it("should read from cache and immediately write to dom if cached", (done) => {
     // here we are testing that if we read from cache,
     // we don't have a frame where the data isn't loaded
     mockCached(1000);
@@ -72,9 +72,7 @@ describe("useCache hook", () => {
 
   it("should default the useExpired param to true", (done) => {
     mockExpired();
-    render(
-      <TestComponent doFetch={doFetch} ttl={convertMinutesToMilliseconds(5)} />
-    );
+    render(<TestComponent doFetch={doFetch} ttl={convertMinutesToMilliseconds(5)} />);
     expectFromCache();
     waitFor(() => expect(screen.queryByText(fromFetchExpected)).not.toEqual(null)).then(done);
   });

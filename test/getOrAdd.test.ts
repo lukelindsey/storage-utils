@@ -23,10 +23,10 @@ describe("getOrAdd function", () => {
     (localStorage.getItem as any).mockClear();
   });
 
-  it("should retrieve from the cache if it's present and not expired", done => {
+  it("should retrieve from the cache if it's present and not expired", (done) => {
     mockCached(100);
     const ttl = 5000;
-    getOrAdd(localStorage, cacheKey, doFetch, ttl).then(result => {
+    getOrAdd(localStorage, cacheKey, doFetch, ttl).then((result) => {
       expect(result).toEqual(fromCacheExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenCalledWith(cacheKey);
@@ -36,11 +36,11 @@ describe("getOrAdd function", () => {
     });
   });
 
-  it("should update cache with fetched even if using expired", done => {
+  it("should update cache with fetched even if using expired", (done) => {
     mockCached(-1);
     const ttl = 5000;
     const useExpired = true;
-    getOrAdd(localStorage, cacheKey, doFetch, ttl, useExpired).then(result => {
+    getOrAdd(localStorage, cacheKey, doFetch, ttl, useExpired).then((result) => {
       expect(result).toEqual(fromCacheExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -54,10 +54,10 @@ describe("getOrAdd function", () => {
     });
   });
 
-  it("should fetch if it's in cache and expired", done => {
+  it("should fetch if it's in cache and expired", (done) => {
     mockCached(-1);
     const ttl = 5000;
-    getOrAdd(localStorage, cacheKey, doFetch, ttl).then(result => {
+    getOrAdd(localStorage, cacheKey, doFetch, ttl).then((result) => {
       expect(result).toEqual(fromFetchExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -72,9 +72,9 @@ describe("getOrAdd function", () => {
     });
   });
 
-  it("should fetch if it's not in cache", done => {
+  it("should fetch if it's not in cache", (done) => {
     const ttl = 5000;
-    getOrAdd(localStorage, cacheKey, doFetch, ttl).then(result => {
+    getOrAdd(localStorage, cacheKey, doFetch, ttl).then((result) => {
       expect(result).toEqual(fromFetchExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -88,10 +88,10 @@ describe("getOrAdd function", () => {
       done();
     });
   });
-  it("should fetch if it's not in cache and useExpired is true", done => {
+  it("should fetch if it's not in cache and useExpired is true", (done) => {
     const ttl = 5000;
     const useExpired = true;
-    getOrAdd(localStorage, cacheKey, doFetch, ttl, useExpired).then(result => {
+    getOrAdd(localStorage, cacheKey, doFetch, ttl, useExpired).then((result) => {
       expect(result).toEqual(fromFetchExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -106,8 +106,8 @@ describe("getOrAdd function", () => {
     });
   });
 
-  it("should cache indefinitely if no ttl is provided", done => {
-    getOrAdd(localStorage, cacheKey, doFetch).then(result => {
+  it("should cache indefinitely if no ttl is provided", (done) => {
+    getOrAdd(localStorage, cacheKey, doFetch).then((result) => {
       expect(result).toEqual(fromFetchExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -120,7 +120,7 @@ describe("getOrAdd function", () => {
       expect(fetchCalls).toEqual(1);
 
       // get again and make sure we don't fetch
-      getOrAdd(localStorage, cacheKey, doAnotherFetch).then(result => {
+      getOrAdd(localStorage, cacheKey, doAnotherFetch).then((result) => {
         expect(result).toEqual(fromFetchExpected); // from the first fetch :)
         expect(localStorage.getItem).toHaveBeenCalledTimes(2);
         expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -130,8 +130,8 @@ describe("getOrAdd function", () => {
       });
     });
   });
-  it("should cache for 0 milliseconds if 0 provided", done => {
-    getOrAdd(localStorage, cacheKey, doFetch, 0, false).then(result => {
+  it("should cache for 0 milliseconds if 0 provided", (done) => {
+    getOrAdd(localStorage, cacheKey, doFetch, 0, false).then((result) => {
       expect(result).toEqual(fromFetchExpected);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
@@ -144,7 +144,7 @@ describe("getOrAdd function", () => {
       expect(fetchCalls).toEqual(1);
 
       // get again and make sure we fetch
-      getOrAdd(localStorage, cacheKey, doAnotherFetch, 0, false).then(result => {
+      getOrAdd(localStorage, cacheKey, doAnotherFetch, 0, false).then((result) => {
         expect(result).toEqual(notExpected); // bad name for this case
         expect(localStorage.getItem).toHaveBeenCalledTimes(2);
         expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);

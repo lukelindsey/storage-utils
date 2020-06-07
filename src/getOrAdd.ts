@@ -20,7 +20,7 @@ export function getOrAdd<T>(
 
   // if expired or missing, start the fetch
   const expired = cached ? cached.data : undefined;
-  const fetch = getData(expired).then(data => {
+  const fetch = getData(expired).then((data) => {
     updateStorage(storage, key, data, ttl);
     return data;
   });

@@ -14,8 +14,8 @@ export function TestComponent({ ttl, doFetch, useExpired }: ITestComponentProps)
   let cached = useCache(localStorage, cacheKey, doFetch, ttl, useExpired);
 
   if (cached === undefined) {
-  return <div>{loadingText}</div>;
+    return <div>{loadingText}</div>;
   }
 
-return <div>{cached}</div>;
+  return <div>{cached}</div>;
 }

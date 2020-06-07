@@ -27,7 +27,7 @@ export function getHighlyAvailable<T>(
   // if expired or missing, start the fetch
   const expired = cached ? cached.data : undefined;
   // tslint:disable-next-line:no-floating-promises
-  getData(expired).then(data => {
+  getData(expired).then((data) => {
     updateStorage(storage, key, data, ttl);
     resolve(data);
     return;

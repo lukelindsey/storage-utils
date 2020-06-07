@@ -24,7 +24,7 @@ describe("getHighlyAvailable function", () => {
     (localStorage.getItem as any).mockClear();
   });
 
-  it("should retrieve only from the cache if it's present and not expired", done => {
+  it("should retrieve only from the cache if it's present and not expired", (done) => {
     mockCached(100);
     const ttl = 5000;
     const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
@@ -41,7 +41,7 @@ describe("getHighlyAvailable function", () => {
     expect(readFromCache).toEqual(fromCacheExpected);
   });
 
-  it("should resolve from cache then fetch and update cache", done => {
+  it("should resolve from cache then fetch and update cache", (done) => {
     mockCached(-1);
     const ttl = 5000;
     const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
@@ -62,7 +62,7 @@ describe("getHighlyAvailable function", () => {
     expect(readFromCache).toEqual(fromCacheExpected);
   });
 
-  it("should resolve only from fetch if it's not in cache", done => {
+  it("should resolve only from fetch if it's not in cache", (done) => {
     const ttl = 5000;
     const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
     const expectedExpiration = new Date().getTime() + ttl;
@@ -83,7 +83,7 @@ describe("getHighlyAvailable function", () => {
     expect(readFromCache).toBe(undefined);
   });
 
-  it("should sucessfully cache", done => {
+  it("should sucessfully cache", (done) => {
     const ttl = 10000;
     const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
     setTimeout(() => {
