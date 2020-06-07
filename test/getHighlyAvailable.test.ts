@@ -2,18 +2,19 @@ import "core-js/features/promise";
 import { getHighlyAvailable } from "../src/storage-utils";
 import { cacheKey, fromCacheExpected, getLastSet, mockCached } from "./testUtils";
 
-const fromFetchExpected = [2, 4, 6];
+const fromFetchExpected = "from-fetch-expected";
 let fetchCalls = 0;
 const doFetch = () => {
   fetchCalls++;
   return Promise.resolve(fromFetchExpected);
 };
 
-let resolved: number[][] = [];
-const resolve = (data: number[]) => {
+let resolved: string[] = [];
+const resolve = (data: string) => {
   resolved.push(data);
 };
 
+// TODO these are annoying for local development, turn them off unless before a push
 describe("getHighlyAvailable function", () => {
   beforeEach(() => {
     fetchCalls = 0;

@@ -1,6 +1,6 @@
 export const cacheKey = "some-key";
 
-export const fromCacheExpected = [1, 2, 3];
+export const fromCacheExpected = "from-cache-expected";
 
 export function mockCached(seconds: number) {
   const toCache = {
@@ -11,6 +11,10 @@ export function mockCached(seconds: number) {
   // don't call set because we want to make assertions
   // on if it was called in the tests.
   localStorage.__STORE__[cacheKey] = serialCache;
+}
+
+export function mockExpired() {
+  mockCached(-1);
 }
 
 export function getLastSet() {
