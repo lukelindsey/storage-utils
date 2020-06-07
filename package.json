@@ -6,7 +6,10 @@
     "caching",
     "storage",
     "localStorage",
-    "sessionStorage"
+    "sessionStorage",
+    "useCache",
+    "hook",
+    "react"
   ],
   "main": "dist/storage-utils.umd.js",
   "module": "dist/storage-utils.es5.js",
@@ -90,18 +93,23 @@
     }
   ],
   "devDependencies": {
+    "@testing-library/react": "10.2.1",
     "@types/jest": "25.2.3",
     "@types/node": "13.9.4",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
     "bundlesize": "0.18.0",
     "commitizen": "4.1.2",
     "core-js": "3.6.4",
     "coveralls": "3.0.11",
     "cz-conventional-changelog": "3.2.0",
     "husky": "4.2.3",
-    "jest": "25.5.4",
-    "jest-localstorage-mock": "2.4.0",
+    "jest": "26.0.1",
+    "jest-localstorage-mock": "2.4.2",
     "lint-staged": "10.2.9",
     "prettier": "2.0.5",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "rimraf": "3.0.2",
     "rollup": "1.32.1",
     "rollup-plugin-commonjs": "10.1.0",
@@ -112,7 +120,7 @@
     "rollup-plugin-uglify": "6.0.4",
     "semantic-release": "15.14.0",
     "travis-deploy-once": "5.0.11",
-    "ts-jest": "25.2.1",
+    "ts-jest": "26.1.0",
     "ts-node": "8.10.2",
     "tslint": "5.20.1",
     "tslint-config-prettier": "1.18.0",
@@ -121,6 +129,9 @@
     "typescript": "3.9.5",
     "uglify-js": "3.9.4",
     "validate-commit-msg": "2.14.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.x.x"
   },
   "husky": {
     "hooks": {

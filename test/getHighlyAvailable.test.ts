@@ -1,26 +1,21 @@
 import "core-js/features/promise";
-import { useResolve } from "../src/storage-utils";
+import { getHighlyAvailable } from "../src/storage-utils";
 import { cacheKey, fromCacheExpected, getLastSet, mockCached } from "./testUtils";
 
-const fromFetchExpected = [2, 4, 6];
-const notExpected = [3, 6, 9];
+const fromFetchExpected = "from-fetch-expected";
 let fetchCalls = 0;
 const doFetch = () => {
   fetchCalls++;
   return Promise.resolve(fromFetchExpected);
 };
 
-const doAnotherFetch = () => {
-  fetchCalls++;
-  return Promise.resolve(notExpected);
-};
-
-let resolved: number[][] = [];
-const resolve = (data: number[]) => {
+let resolved: string[] = [];
+const resolve = (data: string) => {
   resolved.push(data);
 };
 
-describe("useResolve function", () => {
+// TODO these are annoying for local development, turn them off unless before a push
+describe("getHighlyAvailable function", () => {
   beforeEach(() => {
     fetchCalls = 0;
     resolved = [];
@@ -32,39 +27,46 @@ describe("useResolve function", () => {
   it("should retrieve only from the cache if it's present and not expired", (done) => {
     mockCached(100);
     const ttl = 5000;
-    useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
-      expect(resolved[0]).toEqual(fromCacheExpected);
-      expect(resolved.length).toEqual(1);
+    const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
+    setTimeout(() => {
+      // wait for 100 milliseconds cause we don't signal when we are done back
+      // to the caller, but these are just tests
+      expect(resolved.length).toEqual(0);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenCalledWith(cacheKey);
       expect(localStorage.setItem).not.toHaveBeenCalled();
       expect(fetchCalls).toEqual(0);
       done();
-    });
+    }, 1000);
+    expect(readFromCache).toEqual(fromCacheExpected);
   });
 
   it("should resolve from cache then fetch and update cache", (done) => {
     mockCached(-1);
     const ttl = 5000;
-    useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
-      expect(resolved[0]).toEqual(fromCacheExpected);
-      expect(resolved[1]).toEqual(fromFetchExpected);
-      expect(resolved.length).toEqual(2);
+    const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
+    const expectedExpiration = new Date().getTime() + ttl;
+    setTimeout(() => {
+      expect(resolved[0]).toEqual(fromFetchExpected);
+      expect(resolved.length).toEqual(1);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
       const set = getLastSet();
       expect(set.key).toEqual(cacheKey);
       expect(set.data).toEqual(fromFetchExpected);
       // expiration set to within a second of what we expect
-      expect((new Date().getTime() + ttl) / 2000 - set.expiration / 2000).toBeCloseTo(0, 0);
+      expect(expectedExpiration / 2000 - set.expiration / 2000).toBeCloseTo(0, 0);
       expect(fetchCalls).toEqual(1);
       done();
-    });
+    }, 1000);
+    expect(readFromCache).toEqual(fromCacheExpected);
   });
 
   it("should resolve only from fetch if it's not in cache", (done) => {
     const ttl = 5000;
-    useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
+    const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
+    const expectedExpiration = new Date().getTime() + ttl;
+    setTimeout(() => {
       expect(resolved[0]).toEqual(fromFetchExpected);
       expect(resolved.length).toEqual(1);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
@@ -74,15 +76,17 @@ describe("useResolve function", () => {
       expect(set.key).toEqual(cacheKey);
       expect(set.data).toEqual(fromFetchExpected);
       // expiration set to within a second of what we expect
-      expect((new Date().getTime() + ttl) / 2000 - set.expiration / 2000).toBeCloseTo(0, 0);
+      expect(expectedExpiration / 2000 - set.expiration / 2000).toBeCloseTo(0, 0);
       expect(fetchCalls).toEqual(1);
       done();
-    });
+    }, 1000);
+    expect(readFromCache).toBe(undefined);
   });
 
   it("should sucessfully cache", (done) => {
     const ttl = 10000;
-    useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
+    const readFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
+    setTimeout(() => {
       expect(resolved[0]).toEqual(fromFetchExpected);
       expect(resolved.length).toEqual(1);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
@@ -96,17 +100,17 @@ describe("useResolve function", () => {
 
       // reset the resolved to make testing below simpler
       resolved = [];
-
-      // get again and make sure we don't fetch
-      useResolve(localStorage, cacheKey, doAnotherFetch, ttl, resolve).then(() => {
-        expect(resolved[0]).toEqual(fromFetchExpected); // from the first fetch :)
-        expect(resolved.length).toEqual(1);
+      const againFromCache = getHighlyAvailable(localStorage, cacheKey, doFetch, ttl, resolve);
+      setTimeout(() => {
+        expect(resolved.length).toEqual(0);
         expect(localStorage.getItem).toHaveBeenCalledTimes(2);
         expect(localStorage.getItem).toHaveBeenLastCalledWith(cacheKey);
         expect(localStorage.setItem).toHaveBeenCalledTimes(1);
         expect(fetchCalls).toEqual(1);
         done();
-      });
-    });
+      }, 1000);
+      expect(againFromCache).toEqual(fromFetchExpected); // from the first fetch :)
+    }, 1000);
+    expect(readFromCache).toBe(undefined);
   });
 });

@@ -2,8 +2,8 @@ import "core-js/features/promise";
 import { getOrAdd } from "../src/storage-utils";
 import { cacheKey, fromCacheExpected, getLastSet, mockCached } from "./testUtils";
 
-const fromFetchExpected = [2, 4, 6];
-const notExpected = [3, 6, 9];
+const fromFetchExpected = "from-fetch-expected";
+const notExpected = "not-expected";
 let fetchCalls = 0;
 const doFetch = () => {
   fetchCalls++;

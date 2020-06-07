@@ -1,5 +1,5 @@
 /** @hidden */
-export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCache<T> | null {
+export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCache<T> | undefined {
   const cached = storage.getItem(storageKey);
   if (cached) {
     const parsed: ICached = JSON.parse(cached);
@@ -8,7 +8,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
       data: parsed.data,
     };
   }
-  return null;
+  return undefined;
 }
 
 /** @hidden */
