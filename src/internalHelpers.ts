@@ -5,7 +5,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
     const parsed: ICached = JSON.parse(cached);
     return {
       hasTtl: hasTimeToLive(parsed.expiration),
-      data: parsed.data
+      data: parsed.data,
     };
   }
   return null;
@@ -15,7 +15,7 @@ export function getFromStorage<T>(storage: Storage, storageKey: string): IFromCa
 export function updateStorage(storage: Storage, storageKey: string, data: any, ttl?: number): void {
   const cacheObject: ICached = {
     data,
-    expiration: ttl === undefined ? undefined : getNowMilliseconds() + ttl
+    expiration: ttl === undefined ? undefined : getNowMilliseconds() + ttl,
   };
   storage.setItem(storageKey, JSON.stringify(cacheObject));
 }

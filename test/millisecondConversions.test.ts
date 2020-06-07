@@ -2,7 +2,7 @@ import {
   convertDaysToMilliseconds,
   convertHoursToMilliseconds,
   convertMinutesToMilliseconds,
-  convertSecondsToMilliseconds
+  convertSecondsToMilliseconds,
 } from "../src/storage-utils";
 
 describe("MillisecondConversions --", () => {

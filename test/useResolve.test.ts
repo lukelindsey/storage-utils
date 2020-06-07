@@ -29,7 +29,7 @@ describe("useResolve function", () => {
     (localStorage.getItem as any).mockClear();
   });
 
-  it("should retrieve only from the cache if it's present and not expired", done => {
+  it("should retrieve only from the cache if it's present and not expired", (done) => {
     mockCached(100);
     const ttl = 5000;
     useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
@@ -43,7 +43,7 @@ describe("useResolve function", () => {
     });
   });
 
-  it("should resolve from cache then fetch and update cache", done => {
+  it("should resolve from cache then fetch and update cache", (done) => {
     mockCached(-1);
     const ttl = 5000;
     useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
@@ -62,7 +62,7 @@ describe("useResolve function", () => {
     });
   });
 
-  it("should resolve only from fetch if it's not in cache", done => {
+  it("should resolve only from fetch if it's not in cache", (done) => {
     const ttl = 5000;
     useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
       expect(resolved[0]).toEqual(fromFetchExpected);
@@ -80,7 +80,7 @@ describe("useResolve function", () => {
     });
   });
 
-  it("should sucessfully cache", done => {
+  it("should sucessfully cache", (done) => {
     const ttl = 10000;
     useResolve(localStorage, cacheKey, doFetch, ttl, resolve).then(() => {
       expect(resolved[0]).toEqual(fromFetchExpected);
