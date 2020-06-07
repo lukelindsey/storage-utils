@@ -39,24 +39,24 @@ import React from "react";
 import { useCache, convertMinutesToMilliseconds } from "storage-utils";
 import { get } from "./RestClient"; // not in this library
 
-const url = `/api/name`;
+const url = "/api/name";
 const fetchName = () => get<string>(url);
 
 export function Name() {
-  // 
   let name = useCache(
     localStorage, // localStorage will save across browser sessions
     url, // using the url as a cache key, but this depends on the use
     fetchName, // can be anything that returns a promise of something
-    0 // 
+    0, // immediately consider this value dirty
+    true // use an expired value from the cache if it exists
   );
 
   // loading will only ever be shown the very first time
   // since we are using the option to use the expired
-  // value from cache while the fetch processes in the 
+  // value from cache while the fetch processes in the
   // background and eventually causes a re-render
   if (name === undefined) return <div>Loading</div>;
 
-  return <Pane className="name">name</Pane>;
+  return <div>{name}</div>;
 }
 ```
