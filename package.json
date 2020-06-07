@@ -6,7 +6,10 @@
     "caching",
     "storage",
     "localStorage",
-    "sessionStorage"
+    "sessionStorage",
+    "useCache",
+    "hook",
+    "react"
   ],
   "main": "dist/storage-utils.umd.js",
   "module": "dist/storage-utils.es5.js",
