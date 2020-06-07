@@ -17,6 +17,5 @@ export function TestComponent({ ttl, doFetch, useExpired }: ITestComponentProps)
   return <div>{loadingText}</div>;
   }
 
-  // console.log(`test-component rendering: ${cached}`);
 return <div>{cached}</div>;
 }
