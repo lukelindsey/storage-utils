@@ -28,7 +28,7 @@ export function useResolve<T>(
 
   // if expired or missing, start the fetch
   const expired = cached ? cached.data : undefined;
-  return getData(expired).then(data => {
+  return getData(expired).then((data) => {
     updateStorage(storage, key, data, ttl);
     resolve(data);
     return;

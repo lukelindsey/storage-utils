@@ -5,7 +5,7 @@ export const fromCacheExpected = [1, 2, 3];
 export function mockCached(seconds: number) {
   const toCache = {
     data: fromCacheExpected,
-    expiration: new Date().getTime() + seconds * 1000
+    expiration: new Date().getTime() + seconds * 1000,
   };
   const serialCache = JSON.stringify(toCache);
   // don't call set because we want to make assertions
@@ -21,6 +21,6 @@ export function getLastSet() {
   return {
     key,
     data,
-    expiration
+    expiration,
   };
 }
